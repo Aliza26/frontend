@@ -1,0 +1,62 @@
+.admin-page { max-width: 1080px; margin: 0 auto; }
+
+.admin-two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; }
+@media (max-width: 900px) { .admin-two-col { grid-template-columns: 1fr; } }
+
+.admin-left, .admin-right { display: flex; flex-direction: column; gap: 18px; }
+
+.admin-card { padding: 22px; }
+.admin-card h3 { font-size: 15px; margin-bottom: 16px; }
+
+.admin-user-list { display: flex; flex-direction: column; gap: 4px; }
+.admin-user-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px; border-radius: var(--radius-md);
+  transition: background var(--dur-fast) var(--ease-smooth);
+}
+.admin-user-row:hover { background: var(--bg-card-soft); }
+
+.admin-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--periwinkle), var(--teal));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.admin-user-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.admin-user-name { font-size: 13px; font-weight: 600; }
+.admin-user-email { font-size: 11px; color: var(--text-muted); }
+.admin-user-projects { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+.admin-form-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 12px; }
+@media (max-width: 480px) { .admin-form-grid { grid-template-columns: 1fr; } }
+
+.admin-health-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.admin-code { font-family: var(--font-mono); font-size: 11px; background: var(--bg-card-soft); padding: 1px 6px; border-radius: 5px; }
+
+.admin-storage { margin: 16px 0 20px; }
+.admin-storage-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+
+.admin-section-label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; }
+.admin-project-row {
+  display: flex; justify-content: space-between;
+  font-size: 13px; padding: 6px 0; color: var(--text-secondary);
+}
+.admin-project-count { font-weight: 700; font-family: var(--font-mono); color: var(--periwinkle-dark); }
+
+.admin-onprem-badge {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px; background: var(--teal-soft);
+  color: var(--teal-dark); border-radius: var(--radius-md);
+  font-size: 12px; font-weight: 600; margin-top: 14px;
+}
+
+.admin-audit-list { display: flex; flex-direction: column; gap: 10px; }
+.admin-audit-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.admin-audit-main { display: flex; flex-direction: column; min-width: 0; }
+.admin-audit-action { font-size: 12px; font-weight: 600; color: var(--text-primary); text-transform: capitalize; }
+.admin-audit-entity { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+.admin-audit-time { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }

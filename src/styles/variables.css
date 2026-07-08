@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
+
+:root {
+  /* ── Light mode — Ocean Candy ──────────────────────────── */
+  --bg-page:        #F4F8FB;
+  --bg-card:        #FFFFFF;
+  --bg-card-soft:   #EEF5FA;
+  --bg-sidebar:     #E8F1F8;
+  --bg-input:       #FFFFFF;
+
+  --text-primary:   #16232E;
+  --text-secondary: #4C5B67;
+  --text-muted:     #8B97A2;
+  --text-on-accent: #FFFFFF;
+
+  --border-soft:    #DEE8F0;
+  --border-strong:  #C6D5E1;
+
+  /* Primary — sky blue (was coral) */
+  --coral:       #0EA5E9;
+  --coral-dark:  #0284C7;
+  --coral-soft:  #DBF0FC;
+
+  /* Amber */
+  --amber:       #F59E0B;
+  --amber-dark:  #C97D07;
+  --amber-soft:  #FDEFCE;
+
+  /* Periwinkle stays as a supporting blue-violet */
+  --periwinkle:      #6366F1;
+  --periwinkle-dark: #4F51DE;
+  --periwinkle-soft: #E4E5FD;
+
+  /* Green (was teal) */
+  --teal:       #10B981;
+  --teal-dark:  #0E9E6E;
+  --teal-soft:  #D5F5E8;
+
+  /* Hot pink */
+  --pink:       #F43F8E;
+  --pink-dark:  #D62E79;
+  --pink-soft:  #FDE1EE;
+
+  --success:      #10B981;
+  --success-soft: #D5F5E8;
+  --danger:       #EF4457;
+  --danger-soft:  #FCE0E4;
+  --warning:      #F59E0B;
+  --warning-soft: #FDEFCE;
+
+  --shadow-sm: 0 1px 3px rgba(22, 35, 46, 0.06), 0 1px 2px rgba(22, 35, 46, 0.04);
+  --shadow-md: 0 4px 12px rgba(22, 35, 46, 0.08), 0 2px 4px rgba(22, 35, 46, 0.05);
+  --shadow-lg: 0 12px 32px rgba(22, 35, 46, 0.12), 0 4px 8px rgba(22, 35, 46, 0.06);
+  --shadow-coral-glow: 0 8px 24px rgba(14, 165, 233, 0.28);
+
+  --radius-sm:  10px;
+  --radius-md:  16px;
+  --radius-lg:  22px;
+  --radius-full: 999px;
+
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --sidebar-width: 248px;
+  --sidebar-width-collapsed: 76px;
+  --bottomnav-height: 64px;
+
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.15s;
+  --dur-base: 0.25s;
+  --dur-slow: 0.45s;
+}
+
+html.dark {
+  /* ── Dark mode — deep ocean ────────────────────────────── */
+  --bg-page:        #0D1620;
+  --bg-card:        #16232E;
+  --bg-card-soft:   #1B2B38;
+  --bg-sidebar:     #101C26;
+  --bg-input:       #1B2B38;
+
+  --text-primary:   #EAF1F6;
+  --text-secondary: #A9B7C2;
+  --text-muted:     #6E7E8A;
+  --text-on-accent: #0D1620;
+
+  --border-soft:    #24333F;
+  --border-strong:  #35485600;
+
+  --border-strong:  #354856;
+
+  --coral:       #38BDF8;
+  --coral-dark:  #0EA5E9;
+  --coral-soft:  #0C2E40;
+
+  --amber:       #FBB43C;
+  --amber-dark:  #F59E0B;
+  --amber-soft:  #3A2C0E;
+
+  --periwinkle:      #818CF8;
+  --periwinkle-dark: #6366F1;
+  --periwinkle-soft: #21244A;
+
+  --teal:       #34D89F;
+  --teal-dark:  #10B981;
+  --teal-soft:  #0E3328;
+
+  --pink:       #FB6BA6;
+  --pink-dark:  #F43F8E;
+  --pink-soft:  #3A1626;
+
+  --success:      #34D89F;
+  --success-soft: #0E3328;
+  --danger:       #F76B7B;
+  --danger-soft:  #3A1A1F;
+  --warning:      #FBB43C;
+  --warning-soft: #3A2C0E;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-coral-glow: 0 8px 24px rgba(56, 189, 248, 0.32);
+}
