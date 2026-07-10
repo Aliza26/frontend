@@ -14,7 +14,7 @@ import api from '../api'
 import '../styles/Capture.css'
 
 const STATES = { IDLE: 'idle', RECORDING: 'recording', EXTRACTING: 'extracting', RESULT: 'result', DUPLICATE: 'duplicate', REJECTED: 'rejected', SAVING: 'saving', DONE: 'done' }
-const MIN_DURATION = 8
+const MIN_DURATION = 2
 const SIGNAL_WORDS = ['problem', 'issue', 'error', 'bug', 'fix', 'fail', 'broke', 'wrong', 'not working', 'cause', 'crash']
 
 const TABS = [
