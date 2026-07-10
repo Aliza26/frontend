@@ -11,10 +11,25 @@
   display: none;
   flex-direction: column;
   justify-content: center;
-  padding: 60px;
+  padding: 12px 56px;
   background: linear-gradient(165deg, var(--coral-soft), var(--bg-page) 60%);
 }
 
+.auth-brand-logo {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.auth-brand-logo svg {
+  display: block;
+  width: 96px;
+  height: 96px;
+}
 @media (min-width: 1024px) {
   .auth-illustration {
     display: flex;

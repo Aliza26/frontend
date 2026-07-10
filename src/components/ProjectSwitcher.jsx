@@ -17,6 +17,18 @@ export default function ProjectSwitcher() {
   const active = projects.find((p) => p.id === activeProjectId)
   if (!active) return null
 
+  // Single project — show as a static label, no dropdown
+  if (projects.length <= 1) {
+    return (
+      <div className="project-switcher">
+        <div className="project-switcher-btn" style={{ cursor: 'default' }}>
+          <i className="ti ti-folder" aria-hidden="true" />
+          <span className="project-switcher-name">{active.name}</span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="project-switcher" ref={ref}>
       <button className="project-switcher-btn" onClick={() => setOpen((v) => !v)}>

@@ -142,8 +142,8 @@ export default function Capture() {
 
   return (
     <div className="capture-page">
-      <div className="page-header">
-        <h1>What did you just fix?</h1>
+     <div className="page-header">
+        <h1>KTCap · What did you just fix?</h1>
         <p>A two-minute habit that saves the next person weeks.</p>
       </div>
 

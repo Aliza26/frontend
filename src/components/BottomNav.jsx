@@ -2,13 +2,12 @@ import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const navItems = [
-  { path: '/capture',   label: 'Capture',   icon: 'ti-feather',      minRole: 'developer' },
-  { path: '/assistant', label: 'Assistant', icon: 'ti-message-dots', minRole: 'developer' },
-  { path: '/knowledge', label: 'Knowledge', icon: 'ti-bulb',         minRole: 'developer' },
-  { path: '/dashboard', label: 'Dashboard', icon: 'ti-chart-bar',    minRole: 'tech_lead' },
-  { path: '/admin',     label: 'Admin',     icon: 'ti-settings',     minRole: 'admin' },
+  { path: '/capture',   label: 'KTCap',   icon: 'ti-feather',      minRole: 'developer' },
+  { path: '/assistant', label: 'KTChat',  icon: 'ti-message-dots', minRole: 'developer' },
+  { path: '/knowledge', label: 'Knowledge', icon: 'ti-bulb',       minRole: 'developer' },
+  { path: '/dashboard', label: 'KTDash',  icon: 'ti-chart-bar',    minRole: 'tech_lead' },
+  { path: '/admin',     label: 'Admin',   icon: 'ti-settings',     minRole: 'admin' },
 ]
-
 const hierarchy = { developer: 1, tech_lead: 2, admin: 3 }
 
 export default function BottomNav() {

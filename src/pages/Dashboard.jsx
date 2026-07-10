@@ -74,7 +74,7 @@ export default function Dashboard() {
   return (
     <div className="dash-page">
       <div className="page-header">
-        <h1>How the team's doing</h1>
+    <h1>KTDash · How the team's doing</h1>
         <p>A quick look at what's been captured, and where the gaps still are.</p>
       </div>
 
