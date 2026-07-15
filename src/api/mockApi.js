@@ -9,7 +9,7 @@ const USERS = {
     project_ids: ['proj_mjc'], avatar: 'PP',
   },
   'arjun.old@tata.com': {
-    id: 'emp_arjun', name: 'Arjun Sharma', email: 'arjun.old@tata.com',
+    id: '7836a2f5-cdf9-4224-8416-1d4b70ac4673', name: 'Arjun Sharma', email: 'arjun.old@tata.com',
     role_type: 'developer', title: 'Senior Backend Developer', team: 'Backend',
     consent_audio: true, consent_file: true, consent_transcript: true, consent_code: true,
     project_ids: ['proj_mjc'], avatar: 'AS',
