@@ -14,6 +14,8 @@ import KnowledgeBase from './pages/KnowledgeBase'
 import Assistant from './pages/Assistant'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin'
+import MyTickets from './pages/MyTickets'
+import SolveTicket from './pages/SolveTicket'
 import api from './api'
 import './styles/global.css'
 import './styles/Shell.css'
@@ -39,6 +41,8 @@ function AppLayout() {
           <Routes>
             <Route path="/" element={<Navigate to="/capture" replace />} />
             <Route path="/capture" element={<RoleGate><Capture /></RoleGate>} />
+            <Route path="/tickets" element={<RoleGate><MyTickets /></RoleGate>} />
+            <Route path="/tickets/:ticketId/solve" element={<RoleGate><SolveTicket /></RoleGate>} />
             <Route path="/knowledge" element={<RoleGate><KnowledgeBase /></RoleGate>} />
             <Route path="/assistant" element={<RoleGate><Assistant /></RoleGate>} />
             <Route path="/dashboard" element={<RoleGate minRole="tech_lead"><Dashboard /></RoleGate>} />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../store/slices/authSlice";
@@ -12,7 +12,6 @@ const ROLES = [
   { value: "tech_lead", label: "Tech lead" },
   { value: "admin", label: "Admin" },
 ];
-const PROJECTS = [{ id: "proj_mjc", name: "mj-care" }];
 export default function Signup() {
   const [form, setForm] = useState({
     name: "",
@@ -22,12 +21,17 @@ export default function Signup() {
     role_type: "",
     project: "",
   });
+  const [projects, setProjects] = useState([]);
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [shake, setShake] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    api.getPublicProjects().then(setProjects).catch(() => setProjects([]));
+  }, []);
 
   const set = (key, val) => {
     setForm((f) => ({ ...f, [key]: val }));
@@ -124,7 +128,7 @@ export default function Signup() {
             <label className="auth-label">Email</label>
             <input
               className={`input ${errors.email ? "auth-input-error" : ""}`}
-              placeholder="you@tata.com"
+              placeholder="you@mjunction.in"
               value={form.email}
               onChange={(e) => set("email", e.target.value)}
             />
@@ -196,7 +200,7 @@ export default function Signup() {
                   onChange={(e) => set("project", e.target.value)}
                 >
                   <option value="">Select</option>
-                  {PROJECTS.map((p) => (
+                  {projects.map((p) => (
                     <option key={p.id} value={p.id}>
                       {p.name}
                     </option>

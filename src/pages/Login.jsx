@@ -7,10 +7,10 @@ import "../styles/Auth.css";
 import KTHubLogo from "../components/KTHubLogo";
 
 const DEMO = [
-  ["priya.new@tata.com", "New developer", "periwinkle"],
-  ["arjun.old@tata.com", "Developer", "periwinkle"],
-  ["rahul.lead@tata.com", "Tech lead", "teal"],
-  ["admin@tata.com", "Admin", "coral"],
+  ["rohan.verma@mjunction.in", "Developer", "periwinkle"],
+  ["sneha.iyer@mjunction.in", "Developer", "periwinkle"],
+  ["neha.kulkarni@mjunction.in", "Tech lead", "teal"],
+  ["akriti.jha@mjunction.in", "Admin", "coral"],
 ];
 
 const needsConsent = (u) =>
@@ -152,7 +152,7 @@ export default function Login() {
             <input
               type="email"
               className="input"
-              placeholder="you@tata.com"
+              placeholder="you@mjunction.in"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />

@@ -70,12 +70,12 @@ export default function Admin() {
             <div className="admin-form-grid">
               <div>
                 <label className="capture-label">Name</label>
-                <input className="input" placeholder="Customer Payment Reconciliation"
+                <input className="input" placeholder="Vendor Onboarding Portal"
                   value={form.name} onChange={(e) => set('name', e.target.value)} />
               </div>
               <div>
                 <label className="capture-label">Code (2–10 chars)</label>
-                <input className="input" placeholder="CPR" maxLength={10}
+                <input className="input" placeholder="VOP" maxLength={10}
                   value={form.code} onChange={(e) => set('code', e.target.value.toUpperCase())} />
               </div>
             </div>

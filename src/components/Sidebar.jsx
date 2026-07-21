@@ -14,6 +14,12 @@ const navItems = [
     minRole: "developer",
   },
   {
+    path: "/tickets",
+    label: "My Tickets",
+    icon: "ti-ticket",
+    minRole: "developer",
+  },
+  {
     path: "/assistant",
     label: "KTChat",
     icon: "ti-message-dots",

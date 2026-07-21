@@ -2,26 +2,26 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms))
 
 // ── Mock users (password for all: Memory@123) ────────────────────
 const USERS = {
-  'priya.new@tata.com': {
-    id: 'emp_priya', name: 'Priya Patel', email: 'priya.new@tata.com',
+  'rohan.verma@mjunction.in': {
+    id: 'emp_priya', name: 'Priya Patel', email: 'rohan.verma@mjunction.in',
     role_type: 'developer', title: 'Junior Backend Developer', team: 'Backend',
     consent_audio: false, consent_file: false, consent_transcript: false, consent_code: false,
     project_ids: ['proj_mjc'], avatar: 'PP',
   },
-  'arjun.old@tata.com': {
-    id: '7836a2f5-cdf9-4224-8416-1d4b70ac4673', name: 'Arjun Sharma', email: 'arjun.old@tata.com',
+  'sneha.iyer@mjunction.in': {
+    id: '7836a2f5-cdf9-4224-8416-1d4b70ac4673', name: 'Arjun Sharma', email: 'sneha.iyer@mjunction.in',
     role_type: 'developer', title: 'Senior Backend Developer', team: 'Backend',
     consent_audio: true, consent_file: true, consent_transcript: true, consent_code: true,
     project_ids: ['proj_mjc'], avatar: 'AS',
   },
-  'rahul.lead@tata.com': {
-    id: 'emp_rahul', name: 'Rahul Mehta', email: 'rahul.lead@tata.com',
+  'neha.kulkarni@mjunction.in': {
+    id: 'emp_rahul', name: 'Rahul Mehta', email: 'neha.kulkarni@mjunction.in',
     role_type: 'tech_lead', title: 'Engineering Tech Lead', team: 'Backend',
     consent_audio: true, consent_file: true, consent_transcript: true, consent_code: true,
     project_ids: ['proj_mjc'], avatar: 'RM',
   },
-  'admin@tata.com': {
-    id: 'emp_admin', name: 'Anita Rao', email: 'admin@tata.com',
+  'akriti.jha@mjunction.in': {
+    id: 'emp_admin', name: 'Anita Rao', email: 'akriti.jha@mjunction.in',
     role_type: 'admin', title: 'Platform Admin', team: 'Platform',
     consent_audio: true, consent_file: true, consent_transcript: true, consent_code: true,
     project_ids: ['proj_mjc'], avatar: 'AR',
@@ -204,6 +204,80 @@ export const captureText  = (payload) => doCapture('text', payload, 2600)
 export const captureFile  = (payload) => doCapture('file', payload, 2400)
 export const captureVtt   = (payload) => doCapture('vtt', payload, 2600)
 export const captureCode  = (payload) => doCapture('code', payload, 2400)
+
+// ── Tickets ("Solve with KTHub") ───────────────────────────────
+// Mirrors the real backend's static mock ticket board (core/ticket_data.py).
+const MOCK_TICKETS = [
+  { id: 'MJC-1042', title: 'Demo build is calling the production API', priority: 'High', status: 'Open', reporter: 'Samrat', assignee: 'Rohit Sharma', project: 'mj-care', created_at: '2026-07-14T09:12:00+00:00',
+    description: "QA reports that the demo build's feedback screen is hitting feedback.mjunction.in instead of the demo backend. Started after the last deploy." },
+  { id: 'MJC-1058', title: 'Live chat stopped updating in real time on demo', priority: 'Medium', status: 'Open', reporter: 'QA Team', assignee: 'Rohit Sharma', project: 'mj-care', created_at: '2026-07-15T11:40:00+00:00',
+    description: "Chat messages aren't appearing live on the demo environment anymore. Worked fine last week." },
+  { id: 'MJC-1063', title: 'New department (Metal-East) not generating feedback IDs', priority: 'High', status: 'Open', reporter: 'Ops', assignee: 'Rohit Sharma', project: 'mj-care', created_at: '2026-07-16T08:05:00+00:00',
+    description: 'Department was onboarded yesterday but every new feedback submission fails silently — no feedback ID gets assigned.' },
+  { id: 'MJC-1071', title: 'Reopen rate report looks undercounted', priority: 'Medium', status: 'Open', reporter: 'Reporting Team', assignee: 'Rohit Sharma', project: 'mj-care', created_at: '2026-07-17T14:22:00+00:00',
+    description: 'Our reopen-rate dashboard shows far fewer reopens than we know are happening based on customer complaints.' },
+  { id: 'MJC-1084', title: 'Hindi portal showing a raw key instead of label', priority: 'Low', status: 'Open', reporter: 'Support', assignee: 'Rohit Sharma', project: 'mj-care', created_at: '2026-07-18T10:50:00+00:00',
+    description: "A user switched the portal to Hindi and one of the feedback screen labels just shows a string like 'feedback.newLabel' instead of actual text." },
+  { id: 'MJC-1029', title: 'Jenkins deploy stage failing — connection refused', priority: 'High', status: 'Open', reporter: 'Priya', assignee: 'Rohit Sharma', project: 'mj-care', created_at: '2026-07-13T16:30:00+00:00',
+    description: 'Build and test pass, but the deploy stage to production fails every time this week with connection refused.' },
+]
+
+export const getTickets = async () => {
+  await delay(400)
+  return MOCK_TICKETS
+}
+
+export const getTicket = async (ticketId) => {
+  await delay(300)
+  return MOCK_TICKETS.find((t) => t.id === ticketId)
+}
+
+const SOLVING_REPLIES = [
+  'Have you checked the recent deploy logs around when this started? That usually narrows it down fast.',
+  'Could this be an environment variable pointing at the wrong config? Worth a quick check.',
+  "What happens if you roll back the last change and retest — does the issue go away?",
+]
+const REFLECTION_QUESTIONS = [
+  'What made you try that particular fix first?',
+  'Did you consider any other approach before this one, and if so, why did you rule it out?',
+]
+
+export const ticketChat = async (ticketId, { phase, history = [] }) => {
+  await delay(900)
+  const assistantTurns = history.filter((h) => h.role === 'assistant').length
+
+  if (phase === 'reflection') {
+    if (assistantTurns >= 2) {
+      return { reply: "Thanks — that's really useful context. Saving this to the knowledge base now." }
+    }
+    return { reply: REFLECTION_QUESTIONS[assistantTurns % REFLECTION_QUESTIONS.length] }
+  }
+  return { reply: SOLVING_REPLIES[assistantTurns % SOLVING_REPLIES.length] }
+}
+
+export const ticketCapture = async (ticketId) => {
+  await delay(1500)
+  const ticket = MOCK_TICKETS.find((t) => t.id === ticketId)
+  const confidence = 0.8 + Math.random() * 0.18
+  return {
+    status: 'created',
+    entry_id: 'ENT-' + String(Math.floor(Math.random() * 9000) + 1000),
+    confidence_score: confidence,
+    needs_review: confidence < 0.75,
+    extracted: {
+      problem_summary: ticket ? ticket.title : 'Ticket resolved via KTHub solve session',
+      root_cause: 'Root cause identified collaboratively during the KTHub solve session.',
+      solution_steps: [
+        'Reproduced the issue described in the ticket',
+        'Applied the fix worked out together with KTHub',
+        'Verified the original symptom was gone',
+      ],
+      tags: ['#mj-care', '#ticket-chat'],
+      alternatives_considered: [],
+    },
+    message: 'Entry created',
+  }
+}
 
 // ── Knowledge entries ────────────────────────────────────────────
 const ENTRIES = [

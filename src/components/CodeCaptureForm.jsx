@@ -47,7 +47,7 @@ export default function CodeCaptureForm({ onSubmit, disabled }) {
         <>
           <label className="capture-label">Paste the {subtype === 'readme' ? 'markdown' : 'code'}</label>
           <textarea className="input" rows={5} style={{ fontFamily: 'var(--font-mono)', fontSize: 12, marginBottom: 12 }}
-            placeholder={subtype === 'code_comment' ? '# TODO: this retry loop has no backoff, will hammer the gateway…' : subtype === 'docstring' ? 'def reconcile(...):\n    """Reconciles settlement files, assumes UTC input."""' : '# CPR Service\n\nThis service reconciles…'}
+            placeholder={subtype === 'code_comment' ? '# TODO: this retry loop has no backoff, will hammer the ticket-routing API…' : subtype === 'docstring' ? 'def auto_close_ticket(...):\n    """Closes a feedback ticket after 24h of agent inactivity."""' : '# MJ-Care Feedback Portal\n\nThis service routes and escalates…'}
             value={form.file_content} onChange={(e) => set('file_content', e.target.value)} />
         </>
       )}
