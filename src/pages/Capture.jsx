@@ -51,6 +51,9 @@ export default function Capture() {
   const [result, setResult] = useState(null)
   const [edited, setEdited] = useState(null)
   const timerRef = useRef(null)
+  const mediaRecorderRef = useRef(null)
+  const chunksRef = useRef([])
+  const streamRef = useRef(null)
 
   const isLocked = !tag
   const base = { project_id: activeProjectId, employee_id: user.id, tag: tag?.id }
@@ -67,20 +70,54 @@ export default function Capture() {
     }
   }
 
-  const startRec = () => {
+  const startRec = async () => {
+    let stream
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    } catch {
+      setVoiceHint("Couldn't access your microphone — check the browser's permission prompt and try again.")
+      return
+    }
+    streamRef.current = stream
+    const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : ''
+    const recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined)
+    chunksRef.current = []
+    recorder.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data) }
+    recorder.start()
+    mediaRecorderRef.current = recorder
+
     setState(STATES.RECORDING); setSeconds(0); setVoiceHint('')
     timerRef.current = setInterval(() => setSeconds((s) => s + 1), 1000)
   }
 
   const stopRec = async () => {
     clearInterval(timerRef.current)
+
+    const recorder = mediaRecorderRef.current
+    const blob = await new Promise((resolve) => {
+      if (!recorder) return resolve(null)
+      recorder.onstop = () => resolve(new Blob(chunksRef.current, { type: recorder.mimeType || 'audio/webm' }))
+      recorder.stop()
+    })
+    streamRef.current?.getTracks().forEach((t) => t.stop())
+    streamRef.current = null
+    mediaRecorderRef.current = null
+
     if (seconds < MIN_DURATION) {
       setVoiceHint(`Hmm, that felt a bit short — got ${MIN_DURATION - seconds} more seconds in you? Describe what broke, why, and how you fixed it.`)
       setState(STATES.IDLE)
       return
     }
+    if (!blob || blob.size === 0) {
+      setVoiceHint("Didn't catch any audio — please try recording again.")
+      setState(STATES.IDLE)
+      return
+    }
+
+    const ext = blob.type.includes('ogg') ? 'ogg' : 'webm'
+    const audio_file = new File([blob], `voice-note.${ext}`, { type: blob.type })
     setState(STATES.EXTRACTING)
-    handleOutcome(await api.captureAudio(base))
+    handleOutcome(await api.captureAudio({ ...base, audio_file }))
   }
 
   const submitText = async () => {
